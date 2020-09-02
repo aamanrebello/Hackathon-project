@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<title>Energy Usage Readings</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/mystyle.css') }}"/>
+</head>
+
+<body bgcolor="lightcoral">
+
+<h1 id="Title"> Today's Usage of Appliances </h1>
+
+<p id="Prompt">Below are the graphs for today's appliance usage by time:<br>
+<div id="Meanings">
+<ul>
+<li><b id="Unused">Unused:</b> You were not at home while the appliance was on.</li>
+<li><b id="Used">Used:</b> You were at home while the appliance was being used.</li>
+<li><b id="Off">Off:</b> The appliance was off.</li>
+</ul>
+</div>
+
+<div class="container">
+      {% block content %}
+      {% endblock %}
+</div>
+
+<div id="graph"><img id="light" src="{{ url_for('static', filename='lightusage.png') }}" alt="Graph not available right now." height="400" width="520"></div>
+
+<button id="left" onclick="scroll_left()"><img id="lefti" src="{{ url_for('static', filename='leftarrow.png') }}" alt="Scroll left." height="35" width="35"></button>
+<button id="right" onclick="scroll_right()"><img id="righti" src="{{ url_for('static', filename='rightarrow.png') }}" alt="Scroll right." height="35" width="35"></button>
+
+<button id="lightsout" type="button">Lights OUT</button>
+<button id="details" type="button"><a href="http://127.0.0.1:6007/showdetails">Get Details</a></button>
+<button id="hide" type="button"><a href="http://127.0.0.1:6007/">Hide Details</a></button>
+
+<p id="Caption"><b>Light Usage by Time</b></p>
+
+<script>
+
+function scroll_left()
+{
+	 var x = document.getElementById("light");
+	 var y = document.getElementById("heater");
+	 var z = document.getElementById("ac");
+	 if(Boolean(x))
+	 {
+	 	document.getElementById("graph").innerHTML = "<img id=\"ac\" src=\"{{ url_for('static', filename='acusage.png') }}\" alt=\"Graph not available right now.\" height=\"400\" width=\"520\">";
+		document.getElementById("Caption").innerHTML = "<b>AC Usage by Time</b>";
+	 }
+	 else if(Boolean(z))
+	 {
+	 	document.getElementById("graph").innerHTML = "<img id=\"heater\" src=\"{{ url_for('static', filename='heaterusage.png') }}\" alt=\"Graph not available right now.\" height=\"400\" width=\"520\">";
+		document.getElementById("Caption").innerHTML = "<b>Heater Usage by Time</b>";
+	 }
+	 else
+	 {
+	 	document.getElementById("graph").innerHTML = "<img id=\"light\" src=\"{{ url_for('static', filename='lightusage.png') }}\" alt=\"Graph not available right now.\" height=\"400\" width=\"520\">";
+		document.getElementById("Caption").innerHTML = "<b>Light Usage by Time</b>";
+	 }
+}
+
+function scroll_right()
+{
+	 var x = document.getElementById("light");
+	 var y = document.getElementById("heater");
+	 var z = document.getElementById("ac");
+	 if(Boolean(x))
+	 {
+	 	document.getElementById("graph").innerHTML = "<img id=\"heater\" src=\"{{ url_for('static', filename='heaterusage.png') }}\" alt=\"Graph not available right now.\" height=\"400\" width=\"520\">";
+		document.getElementById("Caption").innerHTML = "<b>Heater Usage by Time</b>";
+	 }
+	 else if(Boolean(y))
+	 {
+	 	document.getElementById("graph").innerHTML = "<img id=\"ac\" src=\"{{ url_for('static', filename='acusage.png') }}\" alt=\"Graph not available right now.\" height=\"400\" width=\"520\">";
+		document.getElementById("Caption").innerHTML = "<b>AC Usage by Time</b>";
+	 }
+	 else
+	 {
+	 	document.getElementById("graph").innerHTML = "<img id=\"light\" src=\"{{ url_for('static', filename='lightusage.png') }}\" alt=\"Graph not available right now.\" height=\"400\" width=\"520\">";
+		document.getElementById("Caption").innerHTML = "<b>Light Usage by Time</b>";
+	 }
+}
+
+</script>
+
+</body>
+
+</html>

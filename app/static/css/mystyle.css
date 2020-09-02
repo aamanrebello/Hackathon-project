@@ -1,0 +1,29 @@
+#Title { text-align: center; color: green; text-decoration: underline;}
+
+#Prompt { text-align: center; }
+
+#Meanings { margin-left: 350px; margin-top: 20px;}
+
+#graph { margin-top: 35px; margin-left: 70px;}
+
+#left  { margin-top: 5px; margin-left: 70px}
+
+#Caption { margin-left: 260px; margin-top: 0px}
+
+#right  { margin-top: 5px; margin-left: 420px}
+
+#lightsout  { margin-top: 30px; margin-left: 300px}
+
+#details  { margin-top: 30px; margin-left: 30px}
+
+#hide  { margin-top: 30px; margin-left: 30px}
+
+#Used  { color: gold; }
+
+#Unused { color: maroon; }
+
+#Off { color: green;}
+
+.container {background-color: lightgrey; position: absolute; right: 100px; top: 300px; padding-right: 30px; padding-left: 30px;}
+
+.DetailHead { text-align: center;}
