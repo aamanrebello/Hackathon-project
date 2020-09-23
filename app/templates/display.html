@@ -20,7 +20,7 @@
 </ul>
 </div>
 
-<div class="container">
+<div class="container" id="container">
       {% block content %}
       {% endblock %}
 </div>
@@ -31,12 +31,20 @@
 <button id="right" onclick="scroll_right()"><img id="righti" src="{{ url_for('static', filename='rightarrow.png') }}" alt="Scroll right." height="35" width="35"></button>
 
 <button id="lightsout" type="button">Lights OUT</button>
-<button id="details" type="button"><a href="http://127.0.0.1:6007/showdetails">Get Details</a></button>
-<button id="hide" type="button"><a href="http://127.0.0.1:6007/">Hide Details</a></button>
+<button id="details" type="button"><a>Get Details</a></button>
+<button id="hide" type="button"><a>Hide Details</a></button>
 
 <p id="Caption"><b>Light Usage by Time</b></p>
 
-<script>
+<script type="text/javascript">
+
+document.getElementById("hide").onclick = function() {
+  document.getElementById("container").style.display = "none";
+}
+
+document.getElementById("details").onclick = function() {
+  document.getElementById("container").style.display = "block";
+}
 
 function scroll_left()
 {
