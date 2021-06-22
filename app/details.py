@@ -63,7 +63,9 @@ def show():
     acpc = round( ((actc*5)*318)/3600000, 3 )
     lpc = round( (ltc*5)*10/3600000, 3 )
     htc = round( (htc*5)*4350/36000, 3 )
-    avg_user_time = round( ((sum(streaks)*5)/(len(streaks)*60)), 3)
+    avg_user_time = 0
+    if len(streaks) > 0:
+        avg_user_time = round( ((sum(streaks)*5)/(len(streaks)*60)), 3)
 
     return render_template('showdeets.html', Time=time, Ltime=ltime, Htime=htime, ACtime=actime, A_U_T=avg_user_time, Lcount=lcount, LEne=lpc, HEne=htc, ACEne=acpc)
 

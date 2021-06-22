@@ -6,8 +6,11 @@ s3_file_path = "readings.txt"
 save_as = "data.txt"
 
 # Downloads readings.txt from s3 bucket.
-s3 = boto3.client('s3')
-s3.download_file(bucket_name , s3_file_path, save_as)
+try:
+    s3 = boto3.client('s3')
+    s3.download_file(bucket_name , s3_file_path, save_as)
+except:
+    print('Unable to find file: ' + s3_file_path)
 
 f = open("data.txt", "r")
 lines = f.readlines()
