@@ -24,9 +24,9 @@ Here, the web app and the communication via S3 is implemented. The Arduino code,
   
 **3. How to run**
 --
-  To send from client side to cloud, run the sender program from within the *edge* directory. A text file called *readings.txt* needs to be available within the directory (example provided).
+  To send from client side to cloud, run the sender program from within the *sender* directory. A text file called *readings.txt* needs to be available within the directory (example provided in the folder here).
   ```
-  cd edge
+  cd sender
   python send.py
   ```
   
@@ -40,7 +40,7 @@ Here, the web app and the communication via S3 is implemented. The Arduino code,
   ```
   python details.py
   ```
-  and go to the URL.
+  and go to the URL + "/showdetails". In other words, if the URL is "http:://url", you need to go to "http:://url/showdetails".
   
   
   **4. Additional Information**
