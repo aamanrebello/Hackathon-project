@@ -30,17 +30,13 @@ Here, the web app and the communication via S3 is implemented. The Arduino code,
   python send.py
   ```
   
-  To download new text file on server side and generate new graphs, run the *plotgen.py* file from within the *app* directory.
-  ```
-  cd app
-  python plotgen.py
-  ```
-  
   To run the web app, run:
   ```
   python details.py
   ```
   and go to the URL + "/showdetails". In other words, if the URL is "http:://url", you need to go to "http:://url/showdetails".
+  
+  When you refresh, the app will download the contents of the text file you pushed to the cloud and update the graphs and analytics. The code responsible for this is in *app/graphgen.py*.
   
   
   **4. Additional Information**
