@@ -24,14 +24,15 @@ Here, the web app and the communication via S3 is implemented. The Arduino code,
   
 **3. How to run**
 --
-  To send from client side to cloud, run the sender program from within the *sender* directory. A text file called *readings.txt* needs to be available within the directory (example provided in the folder here).
+  To send from client side to cloud, run the sender program from within the *sender* directory. A text file called *readings.txt* needs to be available within the directory (example provided in the folder here). From root directory:
   ```
   cd sender
   python send.py
   ```
   
-  To run the web app, run:
+  To run the web app, run from root directory:
   ```
+  cd app
   python details.py
   ```
   and go to the URL + "/showdetails". In other words, if the URL is "http:://url", you need to go to "http:://url/showdetails".
