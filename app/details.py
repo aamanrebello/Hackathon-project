@@ -1,17 +1,20 @@
 from flask import Flask, render_template
 import matplotlib.pyplot as plt
+from graphgen import load_and_plot
 
 # Responsible for running web app and rendering usage text stats as text if required.
 
 app = Flask(__name__)
-
-
+filepath = "data.txt"
+DATA_FILE_LAST_MODIFIED = 0.0
 
 # This URL has textual usage details shown along with pie graphs.
 @app.route('/showdetails')
 def show():
+    global DATA_FILE_LAST_MODIFIED
+    DATA_FILE_LAST_MODIFIED = load_and_plot(filepath, DATA_FILE_LAST_MODIFIED)
     # open data file for analysis.
-    f = open("data.txt", "r")
+    f = open(filepath, "r")
     # store lines in file into list
     lines = f.readlines()
     # close file
@@ -69,5 +72,14 @@ def show():
 
     return render_template('showdeets.html', Time=time, Ltime=ltime, Htime=htime, ACtime=actime, A_U_T=avg_user_time, Lcount=lcount, LEne=lpc, HEne=htc, ACEne=acpc)
 
+@app.after_request
+def add_header(r):
+    r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    r.headers["Pragma"] = "no-cache"
+    r.headers["Expires"] = "0"
+    r.headers['Cache-Control'] = 'public, max-age=0'
+    return r
+
 if __name__ == '__main__':
    app.run(port = '6007', debug = True)
+   app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
