@@ -8,6 +8,17 @@ app = Flask(__name__)
 filepath = "data.txt"
 DATA_FILE_LAST_MODIFIED = 0.0
 
+#The analysis state
+time = 0.0
+ltime = 0.0
+htime = 0.0
+actime = 0.0
+avg_user_time = 0.0
+lcount = 0
+lpc = 0.0
+hpc = 0.0
+acpc = 0.0
+
 # This URL has textual usage details shown along with pie graphs.
 @app.route('/showdetails')
 def show():
@@ -23,6 +34,7 @@ def show():
         lines = f.readlines()
         # close file
         f.close()
+        global time, ltime, htime, actime, avg_user_time, lcount, lpc, hpc, acpc
         # stores number of '1's in the light column
         ltc = 0
         # stores number of '1's in the heater column
@@ -69,12 +81,12 @@ def show():
         actime = round( (actc*5)/60, 3 )
         acpc = round( ((actc*5)*318)/3600000, 3 )
         lpc = round( (ltc*5)*10/3600000, 3 )
-        htc = round( (htc*5)*4350/36000, 3 )
+        hpc = round( (htc*5)*4350/36000, 3 )
         avg_user_time = 0
         if len(streaks) > 0:
             avg_user_time = round( ((sum(streaks)*5)/(len(streaks)*60)), 3)
 
-        return render_template('showdeets.html', Time=time, Ltime=ltime, Htime=htime, ACtime=actime, A_U_T=avg_user_time, Lcount=lcount, LEne=lpc, HEne=htc, ACEne=acpc)
+    return render_template('showdeets.html', Time=time, Ltime=ltime, Htime=htime, ACtime=actime, A_U_T=avg_user_time, Lcount=lcount, LEne=lpc, HEne=hpc, ACEne=acpc)
 
 # Prevents caching of images in the browser
 @app.after_request
@@ -87,4 +99,5 @@ def add_header(r):
 
 if __name__ == '__main__':
    app.run(port = '6007', debug = True)
+   # Prevents caching of images in the browser
    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
