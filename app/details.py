@@ -2,7 +2,7 @@ from flask import Flask, render_template
 import matplotlib.pyplot as plt
 from graphgen import load_and_plot
 
-# This module is responsible for runningthe  web app and rendering usage text stats as text if required.
+# This module is responsible for running the  web app and rendering usage text stats as text if required.
 
 app = Flask(__name__)
 filepath = "data.txt"
